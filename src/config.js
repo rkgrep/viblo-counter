@@ -23,7 +23,6 @@ const base64Str = makeValidator((input) => {
 
 module.exports = cleanEnv(process.env, {
     APP_KEY: base64Str({
-        default: crypto.randomBytes(256).toString(),
         desc: 'Encryption key',
     }),
     SESSION_COOKIE: str({
