@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "name": "viblo-counter",
+      "script": "index.js",
+      "env": {
+        "production": true
+      }
+    }
+  ]
+}
