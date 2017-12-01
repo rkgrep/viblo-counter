@@ -48,7 +48,7 @@ module.exports = async () => {
             return
         }
         console.log(`Migrating: ${key}`)
-        await migrations[key]()
+        await migrations[key].up()
         await db.query('INSERT INTO migrations (migration, created_at) VALUES ($1, $2)', [
             key,
             moment().format('YYYY-MM-DD HH:mm:ss'),
