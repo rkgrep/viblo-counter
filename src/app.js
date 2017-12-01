@@ -1,5 +1,6 @@
 const Koa = require('koa')
 const KoaSession = require('koa-session')
+const KoaCors = require('@koa/cors')
 const KoaBodyParser = require('koa-bodyparser');
 
 const app = new Koa()
@@ -25,7 +26,9 @@ const session = KoaSession({
 }, app)
 
 const parser = KoaBodyParser()
+const cors = KoaCors()
 
+app.use(cors)
 app.use(session)
 app.use(parser)
 app.use(routes.routes())
