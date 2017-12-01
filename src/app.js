@@ -26,7 +26,9 @@ const session = KoaSession({
 }, app)
 
 const parser = KoaBodyParser()
-const cors = KoaCors()
+const cors = KoaCors({
+    credentials: true,
+})
 
 app.use(cors)
 app.use(session)
