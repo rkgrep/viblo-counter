@@ -22,17 +22,21 @@ router.get('/all', async ctx => {
 
     const { rows } = await db.query('SELECT * from records ORDER BY created_at DESC')
     ctx.status = 200
+    ctx.set('Content-Type', 'application/json')
     ctx.body = JSON.stringify(rows)
 })
 
 router.post('/track', ctx => {
     const { db, session, query } = ctx
-
-    if (!session.visit_id) {
-        ctx.status = 401
-        ctx.body = 'Session must be initiated'
-        return
+    if (!ctx.session.visit_id) {
+        ctx.session.visit_id = uuid()
     }
+
+    // if (!session.visit_id) {
+    //     ctx.status = 401
+    //     ctx.body = 'Session must be initiated'
+    //     return
+    // }
 
     ctx.status = 200
     ctx.body = 'Ok'
